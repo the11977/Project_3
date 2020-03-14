@@ -29,10 +29,12 @@
 }
 
 .topnav {
+	position: relative;
     background-color: #333;
     overflow: hidden;
     height: 40px;
-    widows: 100%;
+	widows: 100%;
+	text-align: left;
     font-family: Arial;
 	margin-bottom: 20px;
 }

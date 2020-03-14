@@ -22,7 +22,7 @@ video {
 	font-weight: ;
 	color: white;
 	font-size: 18px;
-	font-family: Comic Sans MS;
+	font-family: Arial;
 }
 
 .submit
@@ -39,7 +39,7 @@ video {
 	font-weight: ;
 	color: white;
 	font-size: 18px;
-	font-family: Comic Sans MS;
+	font-family: Arial;
 }
 
 .homepage
@@ -47,11 +47,11 @@ video {
 	position: absolute;
 	top: 5%;
 	left: 10%;
-	transform: translate(-50%,-50%);
+	/* transform: translate(+100%,+50%); */
 	outline: none;	
 	font-weight: ;
 	color: white;
-	font-size: 18px;
+	font-size: 30px;
 	text-decoration: none;
 }
 

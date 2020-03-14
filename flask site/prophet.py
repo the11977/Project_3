@@ -131,7 +131,8 @@ def main():
         Stockpre =  Stockpre[(Stockpre['Weekday'] == 'Monday')]
 
         Stockpre["tom"] = Stockpre["yhat"].shift(-1)
-        
+        # Stockpre['ds'] = Stockpre['ds'].dt.strftime('%m/%d/%Y')
+
         yhat = delta = total = cost = 0.0
         status = "cash"
         # first = Stockpre['Close'][1]
@@ -199,6 +200,10 @@ def main():
             log = log.append({'Date': Stockpre['ds'].iloc[-1], 'Action': 'HELD CASH', 'Stock Price': Stockpre['Close'].iloc[-1], 'Profit' : total,
                             'Predicted Value': row['tom'],'Trade Count': tradecount}, ignore_index=True)
 
+        log['Date'] = log['Date'].dt.strftime('%m/%d/%Y')
+        log['Stock Price'] = log['Stock Price'].apply(lambda x: "${:.2f}".format((x)))
+        log['Predicted Value'] = log['Predicted Value'].apply(lambda x: "${:.2f}".format((x)))
+        log['Profit'] = log['Profit'].apply(lambda x: "${:.2f}".format((x)))
         
         return render_template("plot.html", original = round(original_end,2), forecast = round(forecast_start,2), stock_tinker = stock.upper(), 
             column_names=log.columns.values, row_data=list(log.values.tolist()), zip=zip)
