@@ -1,4 +1,0 @@
-lxml
-flask
-yfinance
-html5lib
