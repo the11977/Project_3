@@ -89,13 +89,9 @@ def main():
         Stockpre = pd.merge(stockprices, pre, on ='ds')
 
 
-        #Prophet plots the observed values of our time series (the black dots), the forecasted values (blue line) and
-        #the uncertainty intervalsof our forecasts (the blue shaded regions).
+        #Prophet plots 
         
-        #forecast_plot = model.plot(forecast)
-        #forecast_plot.show()
-        
-        #make the vizualization a little better to understand
+        #vizualization
         df.set_index('ds', inplace=True)
         forecast.set_index('ds', inplace=True)
         #date = df['ds'].tail(plot_num)
@@ -103,14 +99,10 @@ def main():
         viz_df = df.join(forecast[['yhat', 'yhat_lower','yhat_upper']], how = 'outer')
         viz_df['yhat_scaled'] = np.exp(viz_df['yhat'])
 
-        #close_data = viz_df.Close.tail(plot_num)
-        #forecasted_data = viz_df.yhat_scaled.tail(plot_num)
-        #date = future['ds'].tail(num_days+plot_num)
 
         close_data = viz_df.Close
         forecasted_data = viz_df.yhat_scaled
         date = future['ds']
-        #date = viz_df.index[-plot_num:-1]
         forecast_start = forecasted_data[-num_days]
 
         d = [date, close_data, forecasted_data]
@@ -131,13 +123,9 @@ def main():
         Stockpre =  Stockpre[(Stockpre['Weekday'] == 'Monday')]
 
         Stockpre["tom"] = Stockpre["yhat"].shift(-1)
-        # Stockpre['ds'] = Stockpre['ds'].dt.strftime('%m/%d/%Y')
 
         yhat = delta = total = cost = 0.0
         status = "cash"
-        # first = Stockpre['Close'][1]
-        # final = Stockpre['Close'].iloc[-1]
-        # boring = final - first
         tradecount = 0
 
         log = pd.DataFrame(columns=['Date', 'Action', 'Stock Price', 'Predicted Value','Profit', 'Trade Count'])
